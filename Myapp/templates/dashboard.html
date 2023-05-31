@@ -1,0 +1,151 @@
+{%load staticfiles  %}
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.js" integrity="sha512-L6yov5P1r9QnZX2ZRiq+XBLsm1GQ38zfSDJ6gy3pKmPCqkWvK2nz8Ojlju9q36+zOsMmMB+hYgGrJtJWo4Gy/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<div class="container">
+    <h1> welcome dear {{trader.name }}</h1>
+    <h2> your balance is {{trader.capital}}
+    <h2> your profit is {{profit|floatformat:3}}</h2> <h2> your loss is {{loss|floatformat:3}}</h2>
+    
+   {% if trader.capital > 100.0%}
+   your earn {{gain|floatformat:3}}
+   {%else%}
+   you have lost {{deficit|floatformat:3}}
+   {%endif%}
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>Sno.</th>
+                <th>Profil/Loss</th>
+                <th>Date</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries reversed %}
+            <tr style="color:black;margin:2px !important">
+                <td>{{forloop.counter}}</td>
+                <td>{{entry.profit_loss|floatformat:3}}</td>
+                <td>{{entry.timestamp}}</td>
+                
+               
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <canvas id="profitChart"></canvas>
+<canvas id="lossChart"></canvas>
+
+
+
+<script type="text/javascript">
+    var lossCtx = document.getElementById('lossChart').getContext('2d');
+    var lossChart = new Chart(lossCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for entry in entries %}'{{ entry.timestamp }}',{% endfor %}],
+            datasets: [{
+                label: 'Loss',
+                data: [{% for entry in entries %} {% if entry.profit_loss < 0 %} {{ entry.profit_loss }}, {% else %} null, {% endif %} {% endfor %}],
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                        displayFormats: {
+                            minute: 'MMM D, YYYY h:mm A'
+                        },
+                        tooltipFormat: 'MMM D, YYYY h:mm A',
+                        stepSize: 1,
+                        unitStepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'Timestamp (UTC)'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Loss'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+            
+
+<script type="text/javascript">
+    var profitCtx = document.getElementById('profitChart').getContext('2d');
+    var profitChart = new Chart(profitCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for entry in entries %}'{{ entry.timestamp }}',{% endfor %}],
+            datasets: [{
+                label: 'Profit',
+                data: [{% for entry in entries %} {% if entry.profit_loss > 0 %} {{ entry.profit_loss }}, {% else %} null, {% endif %} {% endfor %}],
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                        displayFormats: {
+                            minute: 'MMM D, YYYY h:mm A'
+                        },
+                        tooltipFormat: 'MMM D, YYYY h:mm A',
+                        stepSize: 1,
+                        unitStepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'Timestamp (UTC)'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Profit'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+        </script> 
