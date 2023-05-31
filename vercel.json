@@ -31,7 +31,7 @@
   "crons": [
     {
       "path": "/Worker/worker.py",
-      "schedule": "0 5 * * *"
+      "schedule": "* * * * *"
     }
   ],
   "outputDirectory": "static"
