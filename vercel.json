@@ -1,3 +1,4 @@
+
 {
   "version": 2,
   "builds": [
@@ -27,5 +28,5 @@
       "dest": "Trader/wsgi.py"
     }
   ],
-  "outputDirectory": "staticfiles"
+  "outputDirectory": "static"
 }
