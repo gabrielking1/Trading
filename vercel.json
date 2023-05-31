@@ -12,7 +12,7 @@
     },
     {
       "src": "build.sh",
-      "use": "@vercel/static-build",
+      "use": "@vercel/static",
       "config": {
         "distDir": "staticfiles"
       }
@@ -26,6 +26,12 @@
     {
       "src": "/(.*)",
       "dest": "Trader/wsgi.py"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/Worker/worker.py",
+      "schedule": "0 5 * * *"
     }
   ],
   "outputDirectory": "static"
