@@ -154,11 +154,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-# Configures the staticfiles directory to serve
-# static files from /static/ on our deployment
-STATIC_ROOT = os.path.join(
-    BASE_DIR, 'staticfiles', 'static')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 # Default primary key field type
