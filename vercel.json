@@ -24,11 +24,10 @@
       "dest": "Trader/wsgi.py"
     }
 ],
-"crons": [
-    {
-      "path": "/Worker/worker.py",
-      "schedule": "* * * * *"
-    }
-  ]
+"crons": [{
+  "path": "/Worker/work",
+  "schedule": "* * * * *"
+}],
+  "outputDirectory": "static"
   
 }
