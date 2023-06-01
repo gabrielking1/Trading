@@ -26,7 +26,7 @@
 ],
 "crons": [
     {
-      "path": "Worker/worker.py",
+      "path": "/Worker/worker.py",
       "schedule": "* * * * *"
     }
   ]
