@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-9o-kpud8c8_=di3&!o=f^vqiwjjee4=4mn-@2qccua9!dms-&j
 DEBUG = True
 
 # ALLOWED_HOSTS = ["localhost",".vercel.app",'now.sh','https://trade-lzt1o13rm-gabrielking1.vercel.app/','https://trade-indol.vercel.app/']
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', "localhost",'http://127.0.0.1:8000/','*']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', "localhost",'http://127.0.0.1:8000/','*','https://portfolio-production-c61d.up.railway.app/']
 
 # Application definition
 
