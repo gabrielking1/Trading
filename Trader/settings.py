@@ -110,11 +110,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'verceldb',
         'USER':'default',
-        'PASSWORD':'xYtHB8Muel3c',
-        'HOST':'ep-twilight-sun-069977-pooler.us-east-1.postgres.vercel-storage.com',
+        'PASSWORD':'unCeDRkLO5d8',
+        'HOST':'ep-ancient-snow-a43gtt2p.us-east-1.aws.neon.tech',
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation

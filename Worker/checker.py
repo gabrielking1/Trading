@@ -9,5 +9,6 @@ def start():
    
     
     scheduler.start()
+
     scheduler.shutdown()
     scheduler.remove_all_jobs()

@@ -2,6 +2,8 @@ from Myapp.models import Trader, Entry
 import random
 from datetime import datetime
 
+import requests
+
 def handler():
     traders = Trader.objects.all()
     entries = Entry()
