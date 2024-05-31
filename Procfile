@@ -1,1 +1,1 @@
-Trader.wsgi
+web: gunicorn Trader.wsgi
